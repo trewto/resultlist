@@ -28,22 +28,22 @@ $data = curl_exec($ch);
 
 $html = $data;
 ///////////////////////////
-$pokemon_doc = new DOMDocument();
+$d_doc = new DOMDocument();
 
 libxml_use_internal_errors(TRUE); //disable libxml errors
 
-if(!empty($html)){ //if any html is actually returned
+if(!empty($html)){ 
 
-	$pokemon_doc->loadHTML($html);
+	$d_doc->loadHTML($html);
 	libxml_clear_errors(); //remove errors for yucky html
 	
-	$pokemon_xpath = new DOMXPath($pokemon_doc);
+	$d_xpath = new DOMXPath($d_doc);
 
-	//get all the h2's with an id
-	$pokemon_row = $pokemon_xpath->query('//td');
+	//get all the td 
+	$d_row = $d_xpath->query('//td');
 $r = "";
-	if($pokemon_row->length > 0){
-		foreach($pokemon_row as $row){
+	if($d_row->length > 0){
+		foreach($d_row as $row){
 			 $r .= $row->nodeValue . "---- ";
 			
 		}
